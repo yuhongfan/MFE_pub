@@ -6,4 +6,4 @@
 #PBS -j oe
 #PBS -l select=27:ncpus=36:mpiprocs=36
 
-mpiexec_mpt -n 960 /glade/u/home/yfan/mfe/mfe_expand1/xmfe
+mpiexec_mpt -n 960 ./xmfe

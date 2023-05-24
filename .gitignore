@@ -1,4 +1,4 @@
 *.o
 *.mod
 xmfe
-postcpp/*
+postcpp/*.f90
