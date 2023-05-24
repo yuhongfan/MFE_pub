@@ -1,0 +1,10 @@
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/b1_0000.dat b1_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/b2_0000.dat b2_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/b3_0000.dat b3_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/v1_0000.dat v1_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/v2_0000.dat v2_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/v3_0000.dat v3_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/d_0000.dat d_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/e_0000.dat e_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/q_0000.dat q_rst.dat
+cp /glade/p/hao/cmemodel/yfan/CMS_init/model68_180000_hT0_ishift/grid.dat grid_in.dat
