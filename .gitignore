@@ -2,3 +2,4 @@
 *.mod
 xmfe
 postcpp/*.f90
+python/__pycache__
