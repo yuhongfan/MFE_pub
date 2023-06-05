@@ -1,0 +1,10 @@
+#!/bin/tcsh
+#PBS -N mhdoutflow
+#PBS -A P28102048
+#PBS -l walltime=12:00:00
+#PBS -q economy
+#PBS -j oe
+#PBS -k eod
+#PBS -l select=5:ncpus=36:mpiprocs=36
+
+mpiexec_mpt -n 180 ./xmfe
