@@ -1,0 +1,9 @@
+#!/bin/tcsh
+#PBS -N hinode_stitch
+#PBS -A P28102048
+#PBS -l walltime=12:00:00
+#PBS -q regular
+#PBS -j oe
+#PBS -l select=64:ncpus=36:mpiprocs=36
+
+mpiexec_mpt -n 2304 ./xmfe
