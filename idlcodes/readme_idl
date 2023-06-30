@@ -1,0 +1,27 @@
+In this directory are the idl routines that read the data files output from the MFE code
+
+Please look at the beginning of each of the routine files to see the purpose and the calling
+syntax of that routine.
+
+Here is an example to call the getv1.pro routine, to read the b1 field at a particular time step into IDL:
+
+IDL> datadir='/Users/yfan/work/data/orszag-tang/xy_mfe_expand1/run.mfe_expand1/' ;full path of the run directory 
+IDL> it=100 ;specify the time step, e.g. 100
+IDL> getv1,datadir,it,v1,x1_v1,x2_v1,x3_v1,time_v1
+
+Then you will get in IDL the following data:
+;v1: array for v1 velocity component
+;x1_v1: x1 grid position of v1 array
+;x2_v1: x2 grid position of v2 array
+;x3_v1: x3 grid position of v3 array
+;time_v1: time of the snapshot
+
+Similarly you can read in other variables (v2, v3, b1, b2, b3, rho, pres)
+at the time step by calling getv2.pro, getv3.pro, getb1.pro, getb2.pro, getrho.pro, getpres.pro
+
+The routine readgrid.pro reads the "grid.dat" file written by the code, which contains all the grid
+variables used in the code. See the beginning of the readgrid.pro routine for the syntax to call it.
+
+The routine readphysparams.pro reads the "physparams.dat" file written by the code, which contains the
+physical constants and parameters, and the normalizing units used by the code. See the beginning of the
+routine for the syntax to call it to read the quantities into IDL.
