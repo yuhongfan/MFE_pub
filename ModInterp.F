@@ -255,7 +255,7 @@ subroutine x1zc3d_den ( qty, jbeg, kbeg, jend, kend, &
            idtop=0+nproc1*myid2+(nproc1*nproc2)*myid3
          endif
          allocate(recvbot(ism2:ism2,jbeg:jend,kbeg:kend), &
-                  recvtop(jep2:jep2,jbeg:jend,kbeg:kend))
+                  recvtop(iep2:iep2,jbeg:jend,kbeg:kend))
          allocate(sendtop(iem1:iem1,jbeg:jend,kbeg:kend), &
                   sendbot(isp1:isp1,jbeg:jend,kbeg:kend))
          sendtop=dqii(iem1:iem1,jbeg:jend,kbeg:kend)
