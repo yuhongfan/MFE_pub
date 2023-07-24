@@ -1,13 +1,13 @@
     # *****************************************************************************
     # NAME: pyMFE
     # DESCRIPTION: Module contains functions to read data from MFE output binary .dat files,
-    # and provide vars in CGS units, and compute electric current, and other subroutines
+    # and provide vars in CGS units, and compute electric current, and other functions
     # List of functions:
     #   readphysparams (Read physparams.dat file)
     #   readgrid (Read grid.dat file)
     #   readdata (Read output data file (dat files contain data with ghost zones))
     #   getdata (Read MFE data arrays in CGS units inside domain (no ghost zones))
-    #   coords_from_fits(radial_Bfield_fits_file) get coordinate arrays from JSOC FITS file of PDFI Bradial 
+    #   coords_from_fits (Compute coordinate arrays from JSOC FITS file of PDFI Bradial) 
     # VERSION: 1.2 (24 Jul 2023) Last update: added getting coodrinate arrays from JSOC FITS file
     # USAGE: import pyMFE as mfe
     # AUTHOR: Dr. Andrey Afanasyev, LASP CU Boulder
@@ -398,7 +398,7 @@ def getdata(var, it):
 
 def coords_from_fits(radial_Bfield_fits_file):
 
-    # DESCRIPTION: Compute coordinate arrays for MFE code using the JSOC FITS file for RADIAL component of
+    # DESCRIPTION: Compute coordinate arrays for MFE code using the JSOC FITS file of RADIAL component of
     #   PDFI magnetic field
     # USAGE: x1b, x1a, x2b, x2a = coords_from_fits(radial_Bfield_fits_file)
 
