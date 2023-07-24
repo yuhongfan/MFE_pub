@@ -1,13 +1,14 @@
     # *****************************************************************************
     # NAME: pyMFE
     # DESCRIPTION: Module contains functions to read data from MFE output binary .dat files,
-    # and provide vars in CGS units, and compute electric current
+    # and provide vars in CGS units, and compute electric current, and other subroutines
     # List of functions:
     #   readphysparams (Read physparams.dat file)
     #   readgrid (Read grid.dat file)
     #   readdata (Read output data file (dat files contain data with ghost zones))
     #   getdata (Read MFE data arrays in CGS units inside domain (no ghost zones))
-    # VERSION: 1.1 (22 Dec 2022) Last update: added currents
+    #   coords_from_fits(radial_Bfield_fits_file) get coordinate arrays from JSOC FITS file of PDFI Bradial 
+    # VERSION: 1.2 (24 Jul 2023) Last update: added getting coodrinate arrays from JSOC FITS file
     # USAGE: import pyMFE as mfe
     # AUTHOR: Dr. Andrey Afanasyev, LASP CU Boulder
     # COPYRIGHT:
@@ -15,6 +16,7 @@
     # *****************************************************************************
 
 import numpy as np
+from astropy.io import fits
 
 def readphysparams(filename):
 
@@ -392,3 +394,36 @@ def getdata(var, it):
     time_cgs = time * unit_time
 
     return data_cgs, x1_cgs, x2_cgs, x3_cgs, time_cgs
+
+
+def coords_from_fits(radial_Bfield_fits_file):
+
+    # DESCRIPTION: Compute coordinate arrays for MFE code using the JSOC FITS file for RADIAL component of
+    #   PDFI magnetic field
+    # USAGE: x1b, x1a, x2b, x2a = coords_from_fits(radial_Bfield_fits_file)
+
+    with fits.open(radial_Bfield_fits_file) as data:
+        crpix1 = data[1].header['crpix1'] 
+        crpix2 = data[1].header['crpix2'] 
+        cdelt1 = data[1].header['cdelt1'] 
+        cdelt2 = data[1].header['cdelt2'] 
+        crval1 = data[1].header['crval1'] 
+        crval2 = data[1].header['crval2'] 
+        naxis1 = data[1].header['naxis1'] 
+        naxis2 = data[1].header['naxis2'] 
+
+    x1b = np.empty(naxis1)
+    x1a = np.empty(naxis1+1)
+    for i in range(len(x1b)):
+        x1b[i] = crval1 + cdelt1 * (i+1-crpix1)
+        x1a[i] = crval1 + cdelt1 * (i+0.5-crpix1)
+    x1a[naxis1] = crval1 + cdelt1 * (naxis1+0.5-crpix1)
+
+    x2b = np.empty(naxis2)
+    x2a = np.empty(naxis2+1)
+    for j in range(len(x2b)):
+        x2b[j] = crval2 + cdelt2 * (j+1-crpix2)
+        x2a[j] = crval2 + cdelt2 * (j+0.5-crpix2)
+    x2a[naxis2] = crval2 + cdelt2 * (naxis2+0.5-crpix2)
+
+    return x1b, x1a, x2b, x2a
