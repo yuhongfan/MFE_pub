@@ -400,7 +400,7 @@ def coords_from_fits(radial_Bfield_fits_file):
 
     # DESCRIPTION: Compute coordinate arrays for MFE code using the JSOC FITS file of RADIAL component of
     #   PDFI magnetic field
-    # USAGE: x1b, x1a, x2b, x2a = coords_from_fits(radial_Bfield_fits_file)
+    # USAGE: x1b, x1a, x2b, x2a = mfe.coords_from_fits(radial_Bfield_fits_file)
 
     with fits.open(radial_Bfield_fits_file) as data:
         crpix1 = data[1].header['crpix1'] 
