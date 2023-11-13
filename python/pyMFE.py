@@ -8,7 +8,7 @@
     #   readdata (Read output data file (dat files contain data with ghost zones))
     #   getdata (Read MFE data arrays in physical units (see inparam file) inside domain (no ghost zones))
     #   coords_from_fits (Compute coordinate arrays from JSOC FITS file of PDFI Bradial) 
-    # VERSION: 1.2 (24 Jul 2023) Last update: added getting coodrinate arrays from JSOC FITS file
+    # VERSION: 1.21 (12 Nov 2023) Last update: modified coords_from_fits
     # USAGE: import pyMFE as mfe
     # AUTHOR: Dr. Andrey Afanasyev, LASP CU Boulder
     # COPYRIGHT:
@@ -412,18 +412,10 @@ def coords_from_fits(radial_Bfield_fits_file):
         naxis1 = data[1].header['naxis1'] 
         naxis2 = data[1].header['naxis2'] 
 
-    x1b = np.empty(naxis1)
-    x1a = np.empty(naxis1+1)
-    for i in range(len(x1b)):
-        x1b[i] = crval1 + cdelt1 * (i+1-crpix1)
-        x1a[i] = crval1 + cdelt1 * (i+0.5-crpix1)
-    x1a[naxis1] = crval1 + cdelt1 * (naxis1+0.5-crpix1)
+    x1b = crval1 + cdelt1 * (np.arange(naxis1)+1-crpix1)
+    x1a = crval1 + cdelt1 * (np.arange(naxis1+1)+0.5-crpix1)
 
-    x2b = np.empty(naxis2)
-    x2a = np.empty(naxis2+1)
-    for j in range(len(x2b)):
-        x2b[j] = crval2 + cdelt2 * (j+1-crpix2)
-        x2a[j] = crval2 + cdelt2 * (j+0.5-crpix2)
-    x2a[naxis2] = crval2 + cdelt2 * (naxis2+0.5-crpix2)
+    x2b = crval2 + cdelt2 * (np.arange(naxis2)+1-crpix2)
+    x2a = crval2 + cdelt2 * (np.arange(naxis2+1)+0.5-crpix2)
 
     return x1b, x1a, x2b, x2a
