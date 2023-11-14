@@ -1,0 +1,1 @@
+ifort -O3 -i4 -r8 -mcmodel=medium getxi_forpdfi_1.f90

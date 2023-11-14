@@ -1,0 +1,4 @@
+&input gridfile="/glade/derecho/scratch/yfan/ar11520/initdata/grid.dat"
+       xifile="/glade/derecho/scratch/yfan/ar11520/xifield/xi_"
+       nt1=1,
+       nt2=1000         /
