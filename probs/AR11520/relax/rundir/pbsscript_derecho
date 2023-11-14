@@ -1,0 +1,11 @@
+#!/bin/tcsh
+#PBS -A P28102048
+#PBS -N PDFI_stitch
+#PBS -q main
+#PBS -l walltime=12:00:00
+#PBS -l select=30:ncpus=128:mpiprocs=128
+
+setenv TMPDIR /glade/derecho/scratch/yfan/temp
+mkdir -p $TMPDIR
+
+mpiexec -n 3840 -ppn 128 --cpu-bind core ./xmfe
