@@ -2,7 +2,7 @@
 header='/glade/derecho/scratch/yfan/ar11520/xifield/'
 
 nt1=long(1)
-nt2=long(329)
+nt2=long(1000)
 nstep=long(1)
 
 ;read in the first xi field file to get the horizontal grid size

@@ -8,7 +8,7 @@ module ModUserSetup
   real, allocatable :: ebase0(:,:), dbase0(:,:)
 
   integer, parameter :: ntsub=50
-  real, parameter :: ampxi=2.D-6
+  real, parameter :: ampxi=3.D-6
   real, allocatable :: xislc1(:,:,:), psi(:,:), bsurf(:,:,:)
   integer ifileread
 
@@ -335,12 +335,12 @@ subroutine field_init
        call MPI_BCAST(dt, 1, MPI_DOUBLE_PRECISION, 0, &
          MPI_COMM_WORLD,ierr)
        dtmdi2 = 0.D0
-       alpha_d = 1.D0
+       alpha_d = 1.25D0
        alpha_v = 1.D0
        alpha_e = 1.D0
-       nlf_d = 4
+       nlf_d = 2
        nlf_v = 0
-       nlf_e = 4
+       nlf_e = 0
        clight = 4.D0
        ovc2 = 1.D0/(clight**2)
 !

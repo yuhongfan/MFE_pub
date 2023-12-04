@@ -14,11 +14,11 @@ gridfile_in="./grid",
 qfile_in="./q_",
 itmax_in=8000000,
 itintv_in= 20,
-itout_in=1000,
+itout_in=200,
 ifile_in=0,
 irst_in=0,
 tout_in=1.D0,
-tend_in=32.5D0,
+tend_in=99.D0,
 wtlimit_in=43000.D0 /
 &physicalparams_namelist
 gamma_in=1.666666667D0,
