@@ -75,22 +75,30 @@ cp -p <XIDATA_DIR>/timetable .
 
 Then cd to the MFE source directory (the cloned mfe_expand1 directory)
 and copy the files (ModPar.F ModUserSetup.F ModNonIdealRHS.F makefile) from the
-probs/AR111520/relax directory to the current MFE source directory.
+probs/AR111520/relax directory to the current MFE source directory.  Note for the
+makefile, copy the one appropriate for the machine (e.g. for pleiades, copy
+makefile.pleiades to be the makefile) or edit it based on which machine
+you are on.
 
 Compile the MFE code by typing: make xmfe
+(Note, before compile make sure you load the correct modules)
 
 Copy the executable "xmfe" to the <RUNINIT_DIR>
 
 Copy the example pbscript file (pbsscript_derecho) and the inparam file from the
-probs/AR111520/relax/rundir to the <RUNINIT_DIR>
+probs/AR11520/relax/rundir to the <RUNINIT_DIR>. If on pleiades, then copy the
+corresponding files from the probs/AR11520/relax/rundir.pleiades to the <RUNINIT_DIR>
 
 cd to <RUNINIT_DIR>
 
 Edit the pbsscript file (depending on the machine and the batch queue system)
-and the inparam file for the necessary changes
+and the inparam file for the necessary changes. Note, make sure the modules you
+load in the pbsscript are consistent with the modules used during compile of xmfe. 
 
 Run the executable xmfe by submitting the pbsscript e.g.:
 qsub pbsscript_derecho
+or on pleiades
+qsub pbsscript_pleiades 
 
 The final state data files from this run will be used as the
 initial state for the subsequent driving simulation (driven
