@@ -3,38 +3,36 @@ PROGDIR = .
 ################### yellowstone################################
 #FORT = mpif90
 #CPP = cpp
-#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS
+#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS -DHOLLWEG
 #LDOPTS =
 #FFLAGS = -O3 -r8 -fp-model strict
 ###############################################################
 
 ################### cheyenne ################################
-FORT = mpif90
-CPP = cpp
-CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS
-LDOPTS =
-FFLAGS = -O3 -r8 -fp-model strict
+#FORT = mpif90
+#CPP = cpp
+#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT
+#LDOPTS =
 #FFLAGS = -O3 -r8 -fp-model strict -march=corei7 -axAVX
 ###############################################################
 
 ################### topaz #####################################
 #FORT = ifort
 #CPP = cpp
-#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS
+#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS -DHOLLWEG
 #LDOPTS = -lmpi
 #FFLAGS = -O3 -r8 -fp-model strict
 ###############################################################
 
 ################### pleiades ##################################
-#FORT = ifort
-#CPP = cpp
-#CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT -DHEAT_RADLOSS
-#LDOPTS = -lmpi
-###FFLAGS = -O3 -r8 -axAVX -xSSE4.1 -fp-model strict -vec-report1
-###FFLAGS = -O3 -r8 -axAVX -xSSE4.1 -fp-model strict
-###FFLAGS = -O3 -r8 -axCORE-AVX2 -xSSE4.2 -fp-model strict
-###FFLAGS = -O3 -r8 -axCORE-AVX512 -xSSE4.2 -fp-model strict
-#FFLAGS = -O3 -r8 -axCORE-AVX512,CORE-AVX2,AVX -xSSE4.2 -fp-model strict
+FORT = ifort
+CPP = cpp
+CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DFQTANH -DTHCONDUCT
+LDOPTS = -lmpi
+##FFLAGS = -O3 -r8 -axAVX -xSSE4.1 -fp-model strict -vec-report1
+##FFLAGS = -O3 -r8 -axAVX -xSSE4.1 -fp-model strict
+##FFLAGS = -O3 -r8 -axCORE-AVX2 -xSSE4.2 -fp-model strict
+FFLAGS = -O3 -r8 -axCORE-AVX512,CORE-AVX2,AVX -xSSE4.2 -fp-model strict
 ##############################################################
 
 POSTCPP = $(PROGDIR)/postcpp

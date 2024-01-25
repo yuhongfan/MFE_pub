@@ -344,14 +344,14 @@ subroutine field_init
 
 end subroutine field_init
 !=========================================================
-subroutine getemf1ib( v2b3, v3b2 )
+subroutine getemf1ib( v2b3mv3b2 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
 
-  real, intent(in), dimension(in,jn,kn) :: v2b3, v3b2
+  real, intent(in), dimension(in,jn,kn) :: v2b3mv3b2
   integer :: j, k
 !---------------------------------------------------------
       if(myid1 .eq. 0) then
@@ -369,8 +369,8 @@ subroutine getemf1ib( v2b3, v3b2 )
 
       do k=ks,kep1
         do j=js,jep1
-          emf1oib1(j,k) = v2b3(ie  ,j,k) - v3b2(ie  ,j,k)
-          emf1oib2(j,k) = v2b3(ie  ,j,k) - v3b2(ie  ,j,k)
+          emf1oib1(j,k) = v2b3mv3b2(ie  ,j,k)
+          emf1oib2(j,k) = v2b3mv3b2(ie  ,j,k)
         enddo
       enddo
 
@@ -378,13 +378,13 @@ subroutine getemf1ib( v2b3, v3b2 )
 
 end subroutine getemf1ib
 !=========================================================
-subroutine getdiffemf1ib( v2b3, v3b2 )
+subroutine getdiffemf1ib( v2b3mv3b2 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
-  real, intent(in), dimension(in,jn,kn) :: v2b3, v3b2
+  real, intent(in), dimension(in,jn,kn) :: v2b3mv3b2
   integer :: j, k
 !---------------------------------------------------------
       if(myid1 .eq. 0) then
@@ -402,8 +402,8 @@ subroutine getdiffemf1ib( v2b3, v3b2 )
 
       do k=ks,kep1
         do j=js,jep1
-          emf1oib1(j,k) = v2b3(ie  ,j,k) - v3b2(ie  ,j,k)
-          emf1oib2(j,k) = v2b3(ie  ,j,k) - v3b2(ie  ,j,k)
+          emf1oib1(j,k) = v2b3mv3b2(ie  ,j,k)
+          emf1oib2(j,k) = v2b3mv3b2(ie  ,j,k)
         enddo
       enddo
 
@@ -411,42 +411,42 @@ subroutine getdiffemf1ib( v2b3, v3b2 )
 
 end subroutine getdiffemf1ib
 !=========================================================
-subroutine getemf1jb( v2b3, v3b2 )
+subroutine getemf1jb( v2b3mv3b2 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v2b3, v3b2
+  real, dimension(in,jn,kn) :: v2b3mv3b2
 
 end subroutine getemf1jb
 !=========================================================
-subroutine getdiffemf1jb( v2b3, v3b2 )
+subroutine getdiffemf1jb( v2b3mv3b2 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v2b3, v3b2
+  real, dimension(in,jn,kn) :: v2b3mv3b2
 
 end subroutine getdiffemf1jb
 !=========================================================
-subroutine getemf1kb( v2b3, v3b2 )
+subroutine getemf1kb( v2b3mv3b2 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v2b3, v3b2
+  real, dimension(in,jn,kn) :: v2b3mv3b2
 
 end subroutine getemf1kb
 !=========================================================
-subroutine getdiffemf1kb( v2b3, v3b2 )
+subroutine getdiffemf1kb( v2b3mv3b2 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v2b3, v3b2
+  real, dimension(in,jn,kn) :: v2b3mv3b2
 
 end subroutine getdiffemf1kb
 !=========================================================
-subroutine getemf2ib( v3b1, v1b3 )
+subroutine getemf2ib( v3b1mv1b3 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
 
-  real, intent(in), dimension(in,jn,kn) :: v3b1, v1b3
+  real, intent(in), dimension(in,jn,kn) :: v3b1mv1b3
   integer :: j, k
 !---------------------------------------------------------
       if(myid1 .eq. 0) then
@@ -465,9 +465,9 @@ subroutine getemf2ib( v3b1, v1b3 )
 
       do k=ksm2,kep3
         do j=jsm2,jep2
-          emf2oib1(j,k) = v3b1(iep1,j,k) - v1b3(iep1,j,k)
+          emf2oib1(j,k) = v3b1mv1b3(iep1,j,k)
           emf2oib2(j,k) = emf2oib1(j,k) + emf2oib1(j,k) &
-               - (v3b1(ie,j,k) - v1b3(ie,j,k))
+               - v3b1mv1b3(ie,j,k)
           emf2oib3(j,k) = emf2oib2(j,k) + emf2oib2(j,k) &
                - emf2oib1(j,k)
         enddo
@@ -477,14 +477,14 @@ subroutine getemf2ib( v3b1, v1b3 )
 
 end subroutine getemf2ib
 !=========================================================
-subroutine getdiffemf2ib( v3b1, v1b3 )
+subroutine getdiffemf2ib( v3b1mv1b3 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
 
-  real, intent(in), dimension(in,jn,kn) :: v3b1, v1b3
+  real, intent(in), dimension(in,jn,kn) :: v3b1mv1b3
 
   integer :: j, k
 !---------------------------------------------------------
@@ -504,9 +504,9 @@ subroutine getdiffemf2ib( v3b1, v1b3 )
 
       do k=ksm2,kep3
         do j=jsm2,jep2
-          emf2oib1(j,k) = v3b1(iep1,j,k) - v1b3(iep1,j,k)
+          emf2oib1(j,k) = v3b1mv1b3(iep1,j,k)
           emf2oib2(j,k) = emf2oib1(j,k) + emf2oib1(j,k) &
-               - (v3b1(ie,j,k) - v1b3(ie,j,k))
+               - v3b1mv1b3(ie,j,k)
           emf2oib3(j,k) = emf2oib2(j,k) + emf2oib2(j,k) &
                - emf2oib1(j,k)
         enddo
@@ -516,42 +516,42 @@ subroutine getdiffemf2ib( v3b1, v1b3 )
 
 end subroutine getdiffemf2ib
 !=========================================================
-subroutine getemf2jb( v3b1, v1b3 )
+subroutine getemf2jb( v3b1mv1b3 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v3b1, v1b3
+  real, dimension(in,jn,kn) :: v3b1mv1b3
 
 end subroutine getemf2jb
 !=========================================================
-subroutine getdiffemf2jb( v3b1, v1b3 )
+subroutine getdiffemf2jb( v3b1mv1b3 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v3b1, v1b3
+  real, dimension(in,jn,kn) :: v3b1mv1b3
 
 end subroutine getdiffemf2jb
 !=========================================================
-subroutine getemf2kb( v3b1, v1b3 )
+subroutine getemf2kb( v3b1mv1b3 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v3b1, v1b3
+  real, dimension(in,jn,kn) :: v3b1mv1b3
 
 end subroutine getemf2kb
 !=========================================================
-subroutine getdiffemf2kb( v3b1, v1b3 )
+subroutine getdiffemf2kb( v3b1mv1b3 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real,  dimension(in,jn,kn) :: v3b1, v1b3
+  real,  dimension(in,jn,kn) :: v3b1mv1b3
 
 end subroutine getdiffemf2kb
 !=========================================================
-subroutine getemf3ib( v1b2, v2b1 )
+subroutine getemf3ib( v1b2mv2b1 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
 
-  real, intent(in), dimension(in,jn,kn) :: v1b2, v2b1
+  real, intent(in), dimension(in,jn,kn) :: v1b2mv2b1
   integer :: j, k
 !---------------------------------------------------------
       if(myid1 .eq. 0) then
@@ -570,9 +570,9 @@ subroutine getemf3ib( v1b2, v2b1 )
 
       do k=ksm2,kep2
         do j=js,jep1
-          emf3oib1(j,k) = v1b2(iep1,j,k) - v2b1(iep1,j,k)
+          emf3oib1(j,k) = v1b2mv2b1(iep1,j,k)
           emf3oib2(j,k) = emf3oib1(j,k) + emf3oib1(j,k) &
-               - (v1b2(ie,j,k) - v2b1(ie,j,k))
+               - v1b2mv2b1(ie,j,k)
           emf3oib3(j,k) = emf3oib2(j,k) + emf3oib2(j,k) &
                - emf3oib1(j,k)
         enddo
@@ -582,13 +582,13 @@ subroutine getemf3ib( v1b2, v2b1 )
 
 end subroutine getemf3ib
 !=========================================================
-subroutine getdiffemf3ib( v1b2, v2b1 )
+subroutine getdiffemf3ib( v1b2mv2b1 )
   use ModPar
   use ModGrid
   use ModBoundary
 
   implicit none
-  real, intent(in), dimension(in,jn,kn) :: v1b2, v2b1
+  real, intent(in), dimension(in,jn,kn) :: v1b2mv2b1
   integer :: j, k
 !---------------------------------------------------------
       if(myid1 .eq. 0) then
@@ -607,9 +607,9 @@ subroutine getdiffemf3ib( v1b2, v2b1 )
 
       do k=ksm2,kep2
         do j=js,jep1
-          emf3oib1(j,k) = v1b2(iep1,j,k) - v2b1(iep1,j,k)
+          emf3oib1(j,k) = v1b2mv2b1(iep1,j,k)
           emf3oib2(j,k) = emf3oib1(j,k) + emf3oib1(j,k) &
-               - (v1b2(ie,j,k) - v2b1(ie,j,k))
+               - v1b2mv2b1(ie,j,k)
           emf3oib3(j,k) = emf3oib2(j,k) + emf3oib2(j,k) &
                - emf3oib1(j,k)
         enddo
@@ -619,31 +619,31 @@ subroutine getdiffemf3ib( v1b2, v2b1 )
 
 end subroutine getdiffemf3ib
 !=========================================================
-subroutine getemf3jb( v1b2, v2b1 )
+subroutine getemf3jb( v1b2mv2b1 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v1b2, v2b1
+  real, dimension(in,jn,kn) :: v1b2mv2b1
 
 end subroutine getemf3jb
 !=========================================================
-subroutine getdiffemf3jb( v1b2, v2b1 )
+subroutine getdiffemf3jb( v1b2mv2b1 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v1b2, v2b1
+  real, dimension(in,jn,kn) :: v1b2mv2b1
 
 end subroutine getdiffemf3jb
 !=========================================================
-subroutine getemf3kb( v1b2, v2b1 )
+subroutine getemf3kb( v1b2mv2b1 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v1b2, v2b1
+  real, dimension(in,jn,kn) :: v1b2mv2b1
 
 end subroutine getemf3kb
 !=========================================================
-subroutine getdiffemf3kb( v1b2, v2b1 )
+subroutine getdiffemf3kb( v1b2mv2b1 )
   use ModPar,      ONLY: in,jn,kn
   implicit none
-  real, dimension(in,jn,kn) :: v1b2, v2b1
+  real, dimension(in,jn,kn) :: v1b2mv2b1
 
 end subroutine getdiffemf3kb
 !=========================================================
@@ -854,7 +854,7 @@ subroutine getv2ib
       if(myid1 .eq. 0) then
 
       do k=ks,ke
-        do j=js,je
+        do j=js,jep1
           v2iib0(j,k)=v2(is,j,k)
           v2iib1(j,k)=0.D0
           v2iib2(j,k)=0.D0
@@ -866,7 +866,7 @@ subroutine getv2ib
       if(myid1 .eq. nproc1-1) then
 
       do k=ks,ke
-        do j=js,je
+        do j=js,jep1
           v2oib1(j,k) = v2(ie,j,k)
           v2oib2(j,k) = v2(ie,j,k)
         enddo
@@ -897,7 +897,7 @@ subroutine getv3ib
 !----------------------------------------------------------------
       if(myid1 .eq. 0) then
 
-      do k=ks,ke
+      do k=ks,kep1
         do j=js,je
           v3iib0(j,k)=v3(is,j,k)
           v3iib1(j,k)=0.D0
@@ -909,7 +909,7 @@ subroutine getv3ib
 
       if(myid1 .eq. nproc1-1) then
 
-      do k=ks,ke
+      do k=ks,kep1
         do j=js,je
           v3oib1(j,k) = v3(ie,j,k)
           v3oib2(j,k) = v3(ie,j,k)
