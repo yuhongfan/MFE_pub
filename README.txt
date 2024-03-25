@@ -4,7 +4,7 @@ The code is developed at HAO/NCAR and has been used to model magnetic flux emerg
 
 Currently in this public repository of the code, only the setups (and instructions) for running the standard Orszag-Tang Vortex test and a CME event simulation published in Liu et al. (2022) are provided (in the probs/ subdirectories). Setups and instructions for running other published simulations will be continually added in the future.
 
-Here after we will refer to the cloned MFE_mirror directory as the root directory.
+Here after we will refer to the cloned MFE_pub directory as the root directory.
 
 1. Instruction to do the Orszag-Tang Vortex Test (Orszag & Tang, J. Fluid Mech., 90, 129, 1998) run with the MFE code on a Mac running macOS with gfortran and openmpi installed:
 
