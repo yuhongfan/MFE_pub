@@ -1,0 +1,13 @@
+#!/bin/tcsh
+#PBS -A <YOUR_PROJECT_NUMBER>
+#PBS -N CMS
+#PBS -q main
+#PBS -r n
+#PBS -l walltime=12:00:00
+#PBS -l select=18:ncpus=128:mpiprocs=128
+#PBS -l job_priority=economy
+
+setenv TMPDIR /glade/derecho/scratch/<USERNAME>/temp
+mkdir -p $TMPDIR
+
+mpiexec -n 2304 -ppn 128 --cpu-bind core ./xmfe

@@ -1,11 +1,12 @@
 PROGDIR = .
 
-################### cheyenne ################################
+################### cheyenne derecho ################################
 FORT = mpif90
 CPP = cpp
 CPPFLAG = -P -traditional -DRTPGR -DJCROSSB -DTHCONDUCT
 LDOPTS =
-FFLAGS = -O3 -r8 -fp-model strict -march=corei7 -axAVX
+FFLAGS = -O3 -r8 -fp-model strict
+#FFLAGS = -O3 -r8 -fp-model strict -march=corei7 -axAVX
 ###############################################################
 
 POSTCPP = $(PROGDIR)/postcpp

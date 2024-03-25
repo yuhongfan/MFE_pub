@@ -3,7 +3,7 @@ module ModPar
 
   integer, parameter :: inmax = 401, jnmax =305, knmax = 405, &
                         ijknmax = max(inmax,jnmax,knmax)
-  integer, parameter :: nproc1 = 18, nproc2 = 10, nproc3=10, &
+  integer, parameter :: nproc1 = 12, nproc2 = 12, nproc3=16, &
                         nproc=nproc1*nproc2*nproc3
   integer, parameter :: in = (inmax-5)/nproc1+5, &
                         jn = (jnmax-5)/nproc2+5, &
